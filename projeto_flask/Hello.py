@@ -2,8 +2,9 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
-def helloworld():
-  return 'Hello World!'
+@app.route('/hello/<name>')
+def hello_name(name):
+  return 'Hello World %s!' % name
 
-app.run()
+if __name__ == '__main__':
+  app.run()
