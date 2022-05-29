@@ -2,6 +2,10 @@ from flask import Flask
 
 app = Flask(__name__)
 
+@app.route('/')
+def hello():
+    return '<h1>Hello, this your intro page to projeto_flask!</h1>'
+
 @app.route('/hello/<name>')
 def hello_name(name):
   return 'Hello World %s!' % name
