@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, request
 
 app = Flask(__name__)
 
@@ -23,14 +23,18 @@ def revision(revNo):
   return 'Revision Number %f' % revNo
 
 # uso de url_for
+# aqui cai direto na página do admin
 @app.route('/admin')
 def hello_admin():
   return "Hello, this is your admin page!"
-  
+
+# aqui cai direto na pagina do guest  
 @app.route('/guest/<guest>')
 def hello_guest(guest):
   return 'Hello %s as Guest' % guest
 
+#aqui checa name, caso admin -> vai para admin
+# caso outro nome -> vai para guest
 @app.route('/user/<name>')
 def hello_user(name):
    if name =='admin':
@@ -40,7 +44,7 @@ def hello_user(name):
     
 @app.route('/success/<name>')
 def success(name):
-   return 'Welcome %s' % name
+   return 'Welcome %s, well done!' % name
 
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
