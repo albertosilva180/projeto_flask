@@ -1,11 +1,13 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, render_template
 
 app = Flask(__name__)
 
 # pagina inicial
 @app.route('/')
 def hello():
-    return '<h1>Hello, this your intro page to projeto_flask!</h1>'
+    # hello() foi modificada para usar render_template()
+    # return '<h1>Hello, this your intro page to projeto_flask!</h1>'
+    return render_template('index.html')
 
 # uso de variável string na url
 @app.route('/hello/<name>')
@@ -46,6 +48,7 @@ def hello_user(name):
 def success(name):
    return 'Welcome %s, well done!' % name
 
+# uso de url_for()
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
    if request.method == 'POST':
